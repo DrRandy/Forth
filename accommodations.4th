@@ -49,8 +49,9 @@ msg_No_instruction  Instruction_none !
         msg_No_instruction  Instruction_mooting_documentation !
     then ;
 
-: Set_instruction_OK_to_close_SR ( bool -- bool )
-    dup if  msg_Close_the_SR            Instruction_OK_to_close_SR  !
+: Set_instruction_OK_to_close_SR ( bool -- bool ) 
+    dup 
+    if      msg_Close_the_SR            Instruction_OK_to_close_SR  !
     else    msg_Cannot_close_the_SR     Instruction_OK_to_close_SR  !  then ;
 
 \ Decision-making algorithm
@@ -86,13 +87,11 @@ msg_No_instruction  Instruction_none !
     User_marks_SR_moot? ;
 
 : Mooting_completed? ( -- bool )  
-    SR_declared_moot?    
-    Mooting_documentation_completed?  and 
+    SR_declared_moot?    Mooting_documentation_completed?  and 
     Set_instruction_mooting ;
 
 : OK_to_close_SR? ( -- bool )    
-    Mooting_completed?    
-    All_SR_components_completed?  or 
-    Set_instruction_OK_to_close_SR;
+    Mooting_completed?    All_SR_components_completed?  or 
+    Set_instruction_OK_to_close_SR ;
 
 
