@@ -1,0 +1,2 @@
+
+: send-message ( object message -- ) ;
